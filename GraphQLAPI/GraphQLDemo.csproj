@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>f2def7ab-87ba-445e-a4e4-f1ac201847f7</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Middleware\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Ioc\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
+    <PackageReference Include="GraphQL" Version="2.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.1.1" />
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Types\OrderItemScalerType.cs" />
+    <Compile Remove="Data\Migrations\20180509092547_Initial.cs" />
+    <Compile Remove="Migrations\20180618111722_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20180618111722_Initial.cs" />
+    <Compile Remove="Migrations\ApplicationDbContextModelSnapshot.cs" />
+    <Compile Remove="Models\Item.cs" />
+    <Compile Remove="Store\DataStore.cs" />
+    <Compile Remove="Store\IDataStore.cs" />
+    <Compile Remove="Types\CustomerInputType.cs" />
+    <Compile Remove="Types\CustomerType.cs" />
+    <Compile Remove="Types\ItemInputType.cs" />
+    <Compile Remove="Models\Customer.cs" />
+    <Compile Remove="Data\ApplicationDatabaseInitializer.cs" />
+    <Compile Remove="InventoryMutation.cs" />
+    <Compile Remove="InventoryQuery.cs" />
+  </ItemGroup>
+</Project>
