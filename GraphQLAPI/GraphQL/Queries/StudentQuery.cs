@@ -37,16 +37,6 @@ namespace GraphQLDemo.GraphQL.Queries
                    return Response(stu);
                }
            );
-
-            graphQLQuery.Field<ListGraphType<StudentType>>(
-              "teachers",
-              resolve: context =>
-              {
-                  var stu = _studentService.GetStudents();
-                  return stu;
-              }
-          );
-
         }
     }
 }
