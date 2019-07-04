@@ -1,6 +1,7 @@
-﻿using GraphQLDemo.Services;
-using GraphQLDemo.Types;
+﻿using GraphQL.Types;
 using GraphQLDemo.GraphQL.Types;
+using GraphQLDemo.Services;
+using GraphQLDemo.Types;
 
 namespace GraphQLDemo.GraphQL.Queries
 {
@@ -30,9 +31,12 @@ namespace GraphQLDemo.GraphQL.Queries
         {
             graphQLQuery.Field<ResponseListGraphType<TeacherType>>(
                "teachers",
+               arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "where" }),
                resolve: context =>
                {
-                   var stu = _teacherService.GetTeachers();
+                   var where = context.GetArgument<string>("where");
+                   System.Console.WriteLine(where);
+                   var stu = _teacherService.GetTeachers(where);
                    return Response(stu);
                }
            );

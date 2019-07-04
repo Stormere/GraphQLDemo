@@ -6,7 +6,7 @@ using GraphQLDemo.Dtos;
 
 namespace GraphQLDemo.GraphQL.Mutations
 {
-    public class StudentMutation : Resolver, IStudentMutation
+    public class StudentMutation :  IStudentMutation
     {
         /*
          {

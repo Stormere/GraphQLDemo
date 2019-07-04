@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace GraphQLDemo.GraphQL
 {
-    public class GraphQLQuery : ObjectGraphType
+    public class GraphQLQuery : ObjectGraphType<object>
     {
         public GraphQLQuery(IServiceProvider serviceProvider)
         {

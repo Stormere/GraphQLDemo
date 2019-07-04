@@ -1,12 +1,11 @@
-﻿using GraphQLDemo.GraphQL.Types;
-using GraphQLDemo.Services;
-using GraphQL.Types;
-using GraphQLDemo.GraphQL.Queries;
+﻿using GraphQL.Types;
 using GraphQLDemo.Dtos;
+using GraphQLDemo.GraphQL.Types;
+using GraphQLDemo.Services;
 
 namespace GraphQLDemo.GraphQL.Mutations
 {
-    public class TeacherMutation : Resolver, ITeacherMutation
+    public class TeacherMutation :  ITeacherMutation
     {
         /*
          {

@@ -8,6 +8,7 @@ using System.Linq;
 using GraphQLDemo.GraphQL.Types;
 using GraphQL;
 using GraphQLDemo.Types;
+using WebSocketManager;
 
 namespace GraphQLDemo.Ioc
 {
@@ -44,7 +45,10 @@ namespace GraphQLDemo.Ioc
             builder.RegisterType<DocumentExecuter>().As<IDocumentExecuter>();
             builder.RegisterType<GraphQLQuery>().AsSelf();
             builder.RegisterType<GraphQLMutation>().AsSelf();
-
+            builder.RegisterType<GraphQLSubscription>().AsSelf();
+            builder.RegisterType<GQLWebSocketWriter>().As<IWebSocketWriter>().SingleInstance();
+            builder.RegisterType<GQLWebSocketReceiver>().As<IWebSocketReceiver>().SingleInstance();
+            builder.RegisterType<WebSocketConnectionManager>().AsSelf();
         }
 
         private void RegisterGraphQLTypes(ContainerBuilder builder)
@@ -83,6 +87,10 @@ namespace GraphQLDemo.Ioc
 
             builder.RegisterAssemblyTypes(serviceAssembly)
                 .Where(t => t.Name.EndsWith("Mutation") && t.Name != "Mutation")
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(serviceAssembly)
+                .Where(t => t.Name.EndsWith("Subscription") && t.Name != "Subscription")
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
         }

@@ -8,6 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using GraphQL.DataLoader;
 using GraphQLDemo.Ioc;
 using Autofac;
+using System.Net.WebSockets;
+using GraphQLDemo.WebSocketManager;
+using System;
+using WebSocketManager;
+using GraphQLDemo.GraphQL;
+using GraphQL.Subscription;
 
 namespace GraphQLDemo
 {
@@ -50,20 +56,19 @@ namespace GraphQLDemo
 
             services.AddMvc();
             services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
-
             services.AddSingleton<IDocumentWriter, DocumentWriter>();
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
-
 			services.AddSingleton<IDataLoaderContextAccessor, DataLoaderContextAccessor>();
             services.AddSingleton<DataLoaderDocumentListener>();
-         
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseWebSockets();
 
             app.UseMiddleware<GraphQLMiddleware>();
 
@@ -73,6 +78,8 @@ namespace GraphQLDemo
                     "default",
                     "{controller=Home}/{action=Index}/{id?}");
             });
+            app.MapWebSocketManager("/hub", serviceProvider.GetService<IWebSocketReceiver>(), "graphql-ws");
+
 
 
         }

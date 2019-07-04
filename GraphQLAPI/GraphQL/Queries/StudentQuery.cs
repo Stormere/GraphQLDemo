@@ -5,7 +5,7 @@ using GraphQLDemo.GraphQL.Types;
 
 namespace GraphQLDemo.GraphQL.Queries
 {
-    public class StudentQuery : Resolver,IStudentQuery
+    public class StudentQuery : Resolver, IStudentQuery
     {
         /*
          

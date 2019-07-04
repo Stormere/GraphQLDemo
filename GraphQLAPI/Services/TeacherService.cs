@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using GraphQLDemo.Dtos;
 
 namespace GraphQLDemo.Services
 {
     public class TeacherService : ITeacherService
     {
+        private readonly Subject<Teacher> whenTeacherCreated;
+        public TeacherService()
+        {
+            this.whenTeacherCreated = new Subject<Teacher>();
+        }
+
+        public IObservable<Teacher> WhenTeacherCreated => whenTeacherCreated.AsObservable();
+
         public Teacher Add(Teacher teacher)
         {
+            this.whenTeacherCreated.OnNext(teacher);
             return teacher;
         }
 
@@ -27,5 +37,10 @@ namespace GraphQLDemo.Services
             }
             return tags;
         }
+        public List<Teacher> GetTeachers(string where)
+        {
+            return GetTeachers().Where(x => x.Name == where).ToList();
+        }
+
     }
 }

@@ -15,6 +15,7 @@ namespace GraphQLDemo.GraphQL
         {
             Query = resolver.Resolve<GraphQLQuery>();
             Mutation = resolver.Resolve<GraphQLMutation>();
+            Subscription = resolver.Resolve<GraphQLSubscription>();
         }
 
     }

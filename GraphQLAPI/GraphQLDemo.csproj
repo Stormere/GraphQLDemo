@@ -12,6 +12,8 @@
     <Folder Include="Views\Home\" />
     <Folder Include="Dtos\" />
     <Folder Include="Ioc\" />
+    <Folder Include="GraphQL\Subscriptions\" />
+    <Folder Include="WebSocketManager\" />
   </ItemGroup>
 
   <ItemGroup>
