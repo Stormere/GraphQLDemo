@@ -49,9 +49,9 @@ namespace GraphQLDemo.Controllers
 
 
         // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
     }
 }
