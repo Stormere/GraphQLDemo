@@ -48,10 +48,10 @@ namespace GraphQLDemo.Controllers
         }
 
 
-        // GET: /<controller>/
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+        //GET: /<controller>/
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }
