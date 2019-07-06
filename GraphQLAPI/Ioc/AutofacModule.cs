@@ -8,7 +8,6 @@ using System.Linq;
 using GraphQLDemo.GraphQL.Types;
 using GraphQL;
 using GraphQLDemo.Types;
-using WebSocketManager;
 
 namespace GraphQLDemo.Ioc
 {
@@ -46,9 +45,6 @@ namespace GraphQLDemo.Ioc
             builder.RegisterType<GraphQLQuery>().AsSelf();
             builder.RegisterType<GraphQLMutation>().AsSelf();
             builder.RegisterType<GraphQLSubscription>().AsSelf();
-            builder.RegisterType<GQLWebSocketWriter>().As<IWebSocketWriter>().SingleInstance();
-            builder.RegisterType<GQLWebSocketReceiver>().As<IWebSocketReceiver>().SingleInstance();
-            builder.RegisterType<WebSocketConnectionManager>().AsSelf();
         }
 
         private void RegisterGraphQLTypes(ContainerBuilder builder)
